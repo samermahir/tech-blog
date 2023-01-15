@@ -5,7 +5,7 @@
 
 const router = require("express").Router();
 // const { request } = require("express");
-const { Post } = require("../models/");
+const { Post, User } = require("../models/");
 const withAuth = require("../utils/auth");
 
 
@@ -14,7 +14,8 @@ const withAuth = require("../utils/auth");
 router.get("/", withAuth, async (req, res) => {
   const postsData = await Post.findAll({
      where: { userId: req.session.userId },
-     includes: [
+     order: [["createdAt", "DESC"]],
+     include: [
       {
         model: User,
         attributes: ["username"]

@@ -1,6 +1,16 @@
-<div>
-    <h2>{{userPost.title}}</h2>
-    <p>{{userPost.body}}</p>
-    <p>Posted By {{userPost.username}}</p>
-    <p>Posted on {{userPost.createdAt}}</p>
+<style>
+    .post {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin: 10px;
+        border-radius: 10px;
+    }
+    
+</style>
+
+<div class="post">
+    <h2>{{title}}</h2>
+    <p>{{body}}</p>
+    <p>Posted By <strong>{{user.username}}</strong></p>
+    <p>Posted on {{format_date createdAt}}</p>
 </div>
