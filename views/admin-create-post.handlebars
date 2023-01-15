@@ -6,7 +6,7 @@
 <script>
     document.querySelector('#new-post').addEventListener("submit", async (event) => {
         event.preventDefault();
-        await fetch('/dashboard/create', {
+        const response = await fetch('/dashboard/create', {
            method: 'POST',
            headers: {
             'Content-Type': 'application/json',
