@@ -13,7 +13,7 @@
     <p>{{body}}</p>
     <p>Posted By <strong>{{user.username}}</strong></p>
     <p>Posted on {{format_date createdAt}}</p>
-    <form method="POST" action="api/post/{{id}}">
+    <form method="POST" action="api/post/delete/{{id}}">
     <button type="submit">Delete</button>
 </form>
 </div>
