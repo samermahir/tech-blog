@@ -3,6 +3,7 @@ const router = require('express').Router();
 const { Post } = require('../../models/');
 const withAuth = require('../../utils/auth');
 
+
 // TODO - create a POST route for creating a new post
 // This should be a protected route, so you'll need to use the withAuth middleware
 router.post('/', withAuth, async (req, res) => {
@@ -24,7 +25,7 @@ router.post('/', withAuth, async (req, res) => {
 
 // TODO - create a DELETE route for deleting a post with a specific id
 // This should be a protected route, so you'll need to use the withAuth middleware
-router.post('/delete/:id', withAuth, async (req, res) => {
+router.delete('/delete/:id', withAuth, async (req, res) => {
     try {
       const deletePost = await Post.destroy({
         where: {

@@ -13,7 +13,40 @@
     <p>{{body}}</p>
     <p>Posted By <strong>{{user.username}}</strong></p>
     <p>Posted on {{format_date createdAt}}</p>
-    <form method="POST" action="api/post/delete/{{id}}">
-    <button type="submit">Delete</button>
-</form>
+
+    <form method="DELETE" action="api/post/delete/{{id}}">
+        <button type="submit">Delete</button>
+
+    </form>
+        <p>{{body}}</p>
+        <p>Posted By <strong>{{user.username}}</strong></p>
+        <p>Posted on {{format_date createdAt}}</p>
+
+
+    <form name="comment" id="comment" method="POST" action="api/comment/{{id}}">
+    <textarea name="commentBody" id="commentBody"  cols="30" rows="10"></textarea>
+    <button type="submit" id="commentSubmit">comment</button>
+    </form>
 </div>
+
+<script>
+    document.querySelector('#comment').addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const response = await fetch('/dashboard/comment', {
+           method: 'POST',
+           headers: {
+            'Content-Type': 'application/json',
+           },
+           body: JSON.stringify({
+            
+            body: document.querySelector('#commentBody').value
+           })
+        })
+
+         if (response.ok) {
+            document.location.replace('/dashboard');
+          } else {
+            alert('Failed to create post');
+          }
+        })
+</script>

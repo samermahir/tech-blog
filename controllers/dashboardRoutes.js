@@ -5,7 +5,7 @@
 
 const router = require("express").Router();
 // const { request } = require("express");
-const { Post, User } = require("../models/");
+const { Post, User, Comment } = require("../models/");
 const withAuth = require("../utils/auth");
 
 
@@ -19,6 +19,10 @@ router.get("/", withAuth, async (req, res) => {
       {
         model: User,
         attributes: ["username"]
+      },
+      {
+        model: Comment,
+        attributes: ["body"]
       }
      ],
     });
@@ -41,6 +45,21 @@ router.post("/create", withAuth, async (req, res) => {
   })
 
   res.status(200).json({ message: "Post created successfully"})
+} catch (err) {
+  request.statusCode(500).json(err);
+}
+})
+
+router.post("/comment", withAuth, async (req, res) => {
+  try {
+  await Comment.create({
+
+    body: req.body.body,
+    userId: req.session.userId,
+    
+  })
+
+  res.status(200).json({ message: "Comment created successfully"})
 } catch (err) {
   request.statusCode(500).json(err);
 }
