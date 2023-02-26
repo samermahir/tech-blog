@@ -1,4 +1,4 @@
-<style>
+{{!-- <style>
     .post {
         border: 1px solid #ccc;
         padding: 10px;
@@ -6,4 +6,8 @@
         border-radius: 10px;
     }
     
-</style>
+</style> --}}
+
+{{#each comments as | userComment |}}
+{{> comments this}}
+{{/each}}
